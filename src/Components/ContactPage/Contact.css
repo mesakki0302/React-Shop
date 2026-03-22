@@ -1,0 +1,70 @@
+.contact-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    background-image: url("https://thumbs.dreamstime.com/b/business-website-page-contact-businessman-touching-us-icons-customer-service-include-telephone-address-email-message-d-227408342.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Contact box */
+.contact-box {
+    width: 400px;
+    padding: 30px;
+
+    background: white;
+    border-radius: 10px;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* Heading */
+.contact-box h2 {
+    margin-bottom: 10px;
+}
+
+/* Description */
+.contact-box p {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 20px;
+}
+
+/* Form layout */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Inputs */
+.contact-form input,
+.contact-form textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    font-size: 14px;
+}
+
+/* Button */
+.contact-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+
+    background-color: black;
+    color: white;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #333;
+}
