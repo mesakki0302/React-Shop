@@ -1,0 +1,50 @@
+.Master{
+    padding: 30px;
+}
+
+.Emptycart{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap:10px;
+}
+
+.Emptycart img{
+    display: flex;
+    width:500px;
+    height:300px;
+    align-items: center;
+}
+
+.Emptycart h1{
+    font-size:xx-large;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cartcontainer{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap:20px;
+}
+
+.cart{
+    background: #f5f5f5;
+    padding:15px;
+    border-radius: 10px;
+    border:1px solid rgb(216, 213, 213);
+}
+
+.cart-body{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:20px;
+}
+
+.cart-body img{
+  width:150px;
+  height:150px;
+  object-fit:cover;
+  padding: 20px;
+}

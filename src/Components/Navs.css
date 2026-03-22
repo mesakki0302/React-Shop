@@ -1,0 +1,43 @@
+.nav-logo img{
+    width:100px;
+    height:100px
+}
+
+.nav-logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-logo p{
+    font-size: large;
+    font-weight:300;
+    color:rgb(160, 11, 73)
+}
+
+.nav-login img{
+   width:100px;
+   height:100px
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 0 1px 3px -2px black;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5tRlw27BFnNHDNw19e2HdonxxevzhU72QLg&s');
+}
+
+.nav-menu{
+    display: flex;
+    align-items: center;
+    gap:50px;
+    color: #626262;
+    font-size: medium;
+}
+
+.nav-menu li{
+    display: flex;
+    text-decoration: none;
+    gap:50px;
+    cursor:pointer
+}
