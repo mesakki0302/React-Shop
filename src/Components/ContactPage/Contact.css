@@ -1,69 +1,124 @@
-.contact-container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to right, #f8f9fa, #e9ecef);
-    background-image: url("https://thumbs.dreamstime.com/b/business-website-page-contact-businessman-touching-us-icons-customer-service-include-telephone-address-email-message-d-227408342.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+/* Global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Contact box */
+/* Container */
+.contact-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* ADDED */
+
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url("https://images.unsplash.com/photo-1521791136064-7986c2920216");
+
+  background-size: cover;
+  background-position: center;
+}
+
+/* Contact Box */
 .contact-box {
-    width: 400px;
-    padding: 30px;
+  width: 100%;
+  max-width: 420px; /* FIXED */
+  padding: 35px;
 
-    background: white;
-    border-radius: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
 
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+
+  backdrop-filter: blur(10px); /* PROFESSIONAL LOOK */
 }
 
 /* Heading */
 .contact-box h2 {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
+  font-size: clamp(22px, 4vw, 28px); /* RESPONSIVE */
 }
 
 /* Description */
 .contact-box p {
-    font-size: 14px;
-    color: gray;
-    margin-bottom: 20px;
+  font-size: clamp(13px, 2vw, 15px);
+  color: gray;
+  margin-bottom: 20px;
 }
 
-/* Form layout */
+/* Form */
 .contact-form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Inputs */
 .contact-form input,
 .contact-form textarea {
-    margin-bottom: 15px;
-    padding: 10px;
+  margin-bottom: 15px;
+  padding: 12px;
 
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 
-    font-size: 14px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+/* Focus effect */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+/* Textarea */
+.contact-form textarea {
+  resize: none;
+  min-height: 100px;
 }
 
 /* Button */
 .contact-form button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
 
-    background-color: black;
-    color: white;
+  background: linear-gradient(45deg, #007bff, #00c6ff);
+  color: white;
 
-    cursor: pointer;
-    transition: 0.3s;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
+/* Hover */
 .contact-form button:hover {
-    background-color: #333;
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #0056b3, #0096c7);
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .contact-box {
+    padding: 25px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .contact-box {
+    max-width: 360px;
+  }
+}
+
+/* Large Screens */
+@media (min-width: 1200px) {
+  .contact-box {
+    max-width: 450px;
+  }
 }

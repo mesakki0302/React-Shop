@@ -65,14 +65,12 @@ export const CartProvider = ({children})=>{
            
         const deleteproduct = async (id) => {
                       
-            try{
+          try{
                       
            await deleteCart(id)
-           
-           setCart(prev =>
-             prev .map(item =>item._id === id ? { ...item, quantity: item.quantity - 1 } : item).
-             filter(item => item.quantity > 0))
-        }catch(err){
+           setCart(prev => prev .map(item =>item._id === id ? { ...item, quantity: item.quantity - 1 } : item).filter(item => item.quantity > 0))
+           }
+        catch(err){
            
            alert(err.response?.data?.message||"Unable to delete")
            

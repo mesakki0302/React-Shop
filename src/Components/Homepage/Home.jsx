@@ -21,8 +21,8 @@ function Home() {
   },[])
 
   return (
-      <div className='Main'>
-      <div className='search1'>
+      <div className='Home-Main'>
+      <div className='Home-search1'>
       <input
         type="text"
         placeholder="Search product..."
@@ -31,15 +31,15 @@ function Home() {
         className="search-input"
       /></div>
 
-      <div className='productcontainer'>
+      <div className='Home-productcontainer'>
         {filteredProducts.map((item)=>(
-          <div className='cart' key={item._id}>
-            <div className='cart-body'>
+          <div className='Home-cart' key={item._id}>
+            <div className='Home-cart-body'>
                <img src={item.image} alt={item.title} />
                <h4>{item.title}</h4>
                <p>{item.description}</p>
                <p>₹ {item.price}</p>
-               <Button variant="outline-secondary" className='buts' onClick={()=>{addToCart(item)}}>Add to cart</Button>
+               <Button variant="outline-secondary" className='Home-buts' onClick={()=>{addToCart(item)}}>Add to cart</Button>
             </div>
           </div>
         ))}
