@@ -1,69 +1,93 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+/* Global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.Sign-container{
-    display:flex;
-    height:100vh;
-    justify-content: center;
-    align-items: center;
-    background-image:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_pgoHuvuMGt_8ovZZra-dq4ZuQCHA3XsBRw&s");
-    background-size:cover;
+/* Container */
+.Sign-container {
+  display: flex;
+  min-height: 100vh; /* FIXED */
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* ADDED */
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_pgoHuvuMGt_8ovZZra-dq4ZuQCHA3XsBRw&s");
+  background-size: cover;
+  background-position: center;
 }
 
-.Sign-box{
-  width:350px;
-  padding:40px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.1);
-  border:1px solid rgba(255,255,255,0.3);
-  text-align:center;
-  color:rgb(26, 25, 25);
+/* Box */
+.Sign-box {
+  width: 100%;
+  max-width: 400px; /* UPDATED */
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-align: center;
+  color: rgb(26, 25, 25);
+  backdrop-filter: blur(10px); /* NICE UI */
 }
 
-.Sign-box h2{
-margin-bottom:30px;
+/*  Title */
+.Sign-box h2 {
+  margin-bottom: 25px;
+  font-size: clamp(20px, 4vw, 28px); /* RESPONSIVE */
 }
 
-.input-group{
-margin-bottom:20px;
+/* Inputs */
+.input-group {
+  margin-bottom: 18px;
 }
 
-.input-group input{
- width:100%;
- padding:10px 5px;
-
- background:transparent;
- border:none;
- border-bottom:2px solid rgb(145, 142, 142);
-
- color:black;
- 
- outline:none;
- font-size:16px;
+.input-group input {
+  width: 100%;
+  padding: 12px 8px; /* IMPROVED */
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgb(145, 142, 142);
+  color: black;
+  outline: none;
+  font-size: clamp(14px, 2vw, 16px); /* RESPONSIVE */
 }
 
 /* Button */
-
-.Sign-btn{
-width:100%;
-padding:12px;
-
-border:1px solid rgb(201, 198, 198);
-border-radius:25px;
-
-background:white;
-color:black;
-
-font-weight:bold;
-cursor:pointer;
-
-margin-bottom:15px;
+.Sign-btn {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgb(201, 198, 198);
+  border-radius: 25px;
+  background: white;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
 }
 
-.Sign-btn:hover{
-background:#eee;
+.Sign-btn:hover {
+  background: #eee;
+}
+
+/* 📱 Mobile */
+@media (max-width: 480px) {
+  .Sign-box {
+    padding: 25px;
+  }
+}
+
+/* 📟 Tablet */
+@media (max-width: 768px) {
+  .Sign-box {
+    max-width: 350px;
+  }
+}
+
+/* 💻 Large screens */
+@media (min-width: 1200px) {
+  .Sign-box {
+    max-width: 450px;
+  }
 }
