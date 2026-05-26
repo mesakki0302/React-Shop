@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useMemo } from 'react'
 import './Cart.css'
 import { CartContext } from '../Context/Cartcontext'
 import { FaTrash } from "react-icons/fa";
@@ -11,12 +11,16 @@ function Cart() {
   const totalItems = cart?.reduce((acc, item) => acc + (item.quantity || 1), 0)
 
   // ✅ Total Price
-  const totalPrice = cart?.reduce(
+  const totalPrice = useMemo(()=>
+   {
+    console.log("Calculating total price...");
+    return (cart || []).reduce(
     (acc, item) => acc + item.price * (item.quantity || 1),
-    0
-  )
+    0)
+    
+},[cart]) 
 
-  return (
+return (
     <div className='Master'>
 
       {!cart || cart.length === 0 ? (

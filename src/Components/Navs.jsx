@@ -22,17 +22,18 @@ function Navs() {
       </div>
 
       <ul className={`nav-menu ${menuOpen ? "active" : ""}`}>
-        <li><Link to='/'>Home</Link></li> 
+        <li><Link to='/Home'>Home</Link></li> 
         <li><Link to='/About'>About</Link></li>
         <li><Link to='/Contact'>Contact</Link></li>
-        <li><Link to='/Login'>Login</Link></li>
+        <li><Link to='/'>Login</Link></li>
+        <li><Link to = '/logout'> Logout </Link></li>
       </ul>
 
       {/* 🛒 Cart */}
       <div className='nav-login'>
         <Link to='/Cart' className="cart-icon">
           
-          {/* ✅ Working cart image */}
+          {/* Working cart image */}
           <img src='https://cdn-icons-png.flaticon.com/512/263/263142.png' alt='cart'/>
 
           {/* 🔴 Count */}

@@ -6,12 +6,29 @@ import { Link, useNavigate } from 'react-router-dom'
 
 function Login() {
 
-  const [form, setForm] = useState({
+const [form, setForm] = useState({
     email:'',
     password:''
   })
 
+  const [error, setError] = useState({})
+
   const navigate = useNavigate()
+
+  const validate = ()=>{
+    
+    let newerrors = {}
+
+    if(!form.email){
+      newerrors.email = 'Email is required'
+    }
+    if(!form.password){
+      newerrors.password = 'Password is required'
+    }
+
+    return newerrors
+
+  }
 
   const handlerChange = (e)=>{
     
@@ -24,7 +41,14 @@ function Login() {
     e.preventDefault()
 
     try{
+
+      const validateerrors = validate()
+       
+      if(Object.keys(validateerrors).length === 0){
+       
        const result = await Logins(form)
+
+       localStorage.setItem('token', result.data.token)
        
        alert("Login Successful")
 
@@ -33,7 +57,12 @@ function Login() {
            password: ''
          })
 
-         navigate('/')
+         navigate('/Home')
+        }  
+        
+        else{
+          setError(validateerrors)
+        }
     }
 
     catch(err){
@@ -50,10 +79,12 @@ function Login() {
 
         <div className="input-group">
           <input type="email" placeholder="Email" name='email' value={form.email} onChange={handlerChange} />
+          <p style={{color:'red'}}>{error.email}</p>
         </div>
 
         <div className="input-group">
           <input type="password" placeholder="Password" name='password' value={form.password} onChange={handlerChange} />
+          <p style={{color:'red'}}>{error.password}</p>        
         </div>
 
         <div className="options">

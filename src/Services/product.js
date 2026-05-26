@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL:"http://localhost:5000/api"
+    baseURL:"http://localhost:5000/api",
+    withCredentials: true
 })
 
 export const getProducts = () => API.get("/products");
@@ -32,12 +33,51 @@ export const getCart = () => API.get('/takecarts')
 
 export const deleteCart = (id) => API.delete(`/deletecart/${id}`);
 
+export const ContactList = (data)=> API.post('/contact',data)
+
+export const Logouts = () => API.post('/logout')
 
 
-API.interceptors.request.use((req)=>{
-    const token = localStorage.getItem('token')
-    if(!token) req.headers.Authorization = `Bearer ${token}`
-    return req
-})
+/* REQUEST */
+API.interceptors.request.use((req) => {
+  const token = localStorage.getItem("token");
+  if (token) req.headers.Authorization = `Bearer ${token}`;
+  return req;
+});
+
+/* RESPONSE */
+API.interceptors.response.use(
+  res => res,
+  async (err) => {
+
+    const originalRequest = err.config;
+
+    if (
+      err.response?.status === 401 &&
+      !originalRequest._retry &&
+      !originalRequest.url.includes("/refresh-token")
+    ) {
+      originalRequest._retry = true;
+
+      try {
+        const res = await API.post("/refresh-token");
+
+        const newToken = res.data.token;
+
+        localStorage.setItem("token", newToken);
+
+        originalRequest.headers.Authorization = `Bearer ${newToken}`;
+
+        return API(originalRequest);
+
+      } catch {
+        localStorage.removeItem("token");
+        window.location.href = "/";
+      }
+    }
+
+    return Promise.reject(err);
+  }
+);
 
 export default API
