@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import { addCartItem, deleteCart, getCart } from "../../Services/product";
 
 
@@ -6,20 +6,28 @@ export const CartContext = createContext()
 
 export const CartProvider = ({children})=>{
    
-    const [cart, setCart] = useState([])
 
-    useEffect(()=>{
-        getCart().then((response)=>{setCart(response.data)
-            console.log(response.data);
-            
-        }).catch((err)=>{
-            alert(err.response?.data?.message||'Unable to Fetching cart')
-               })
-               
-                      },[])
+const [cart, setCart] = useState([])
+
+useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) return;
+
+    getCart()
+      .then(res => setCart(res.data))
+      .catch(err => {
+        if (err.response?.status === 401) {
+          localStorage.removeItem("token");
+          window.location.href = "/";
+        }
+      });
+
+  }, []);
+
                   
-                  
-       const addToCart = async (product) => {
+const addToCart = useCallback(
+         async (product) => {
            
         try{
            
@@ -35,23 +43,24 @@ export const CartProvider = ({children})=>{
            
                setCart((prevCart) => {
            
-                 const existingItem = prevCart.find(
+               const existingItem = prevCart.find(
                    (item) => item.productId === response.data.productId
                  )
            
-                 if(existingItem){
+               if(existingItem){
            
                    // update quantity instead of adding duplicate
                    return prevCart.map((item) =>
-                     item.productId === response.data.productId
-                       ? response.data
-                       : item
+                     item.productId === response.data.productId ? response.data: item
                    )
            
                  }
+
+                console.log("Product Added");
            
                  // add new product if not existing
                  return [...prevCart, response.data]
+                 
            
                })
            
@@ -62,13 +71,14 @@ export const CartProvider = ({children})=>{
              }
            
            }
+       ,[])
            
-        const deleteproduct = async (id) => {
+const deleteproduct = async (id) => {
                       
           try{
                       
            await deleteCart(id)
-           setCart(prev => prev .map(item =>item._id === id ? { ...item, quantity: item.quantity - 1 } : item).filter(item => item.quantity > 0))
+           setCart(prev => prev.map(item => item._id === id ? { ...item, quantity: item.quantity - 1 } : item).filter(item => item.quantity > 0))
            }
         catch(err){
            
