@@ -35,7 +35,7 @@ function Signup() {
            password: ''
          })
 
-         navigate('/Login')
+         navigate('/')
       }
   
       catch(err){

@@ -2,10 +2,13 @@ import React, { useContext, useMemo } from 'react'
 import './Cart.css'
 import { CartContext } from '../Context/Cartcontext'
 import { FaTrash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
 
   const { cart, deleteproduct } = useContext(CartContext)
+
+  const navigate = useNavigate();
 
   // ✅ Total Items
   const totalItems = cart?.reduce((acc, item) => acc + (item.quantity || 1), 0)
@@ -14,6 +17,7 @@ function Cart() {
   const totalPrice = useMemo(()=>
    {
     console.log("Calculating total price...");
+    
     return (cart || []).reduce(
     (acc, item) => acc + item.price * (item.quantity || 1),
     0)
@@ -78,7 +82,10 @@ return (
           {/* 💰 Summary */}
           <div className='cart-summary'>
             <h3>Total Items: {totalItems}</h3>
-            <h2>Total Price: ₹ {totalPrice}</h2>
+            <h2>Total Price: ₹ {totalPrice}</h2><br></br>
+            <button onClick={() => navigate("/payment")}>
+             Proceed to Payment
+            </button>
           </div>
         </>
       )}

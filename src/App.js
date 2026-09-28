@@ -13,6 +13,7 @@ import PrivateRoute from './Router/PrivateRoute';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Logouts } from './Services/product'
 import { useEffect } from 'react';
+import Payment from './Components/PaymentPage/Payment';
 
 function Errorcallback ({error}){
   return <h3>Something went wrong: {error.message} </h3>
@@ -75,6 +76,8 @@ function App() {
           <Route path='/Cart' element={
             <PrivateRoute><Cart /></PrivateRoute>
           } />
+
+          <Route path='/payment' element={<Payment/>}></Route>
 
         </Routes>
       </BrowserRouter>
